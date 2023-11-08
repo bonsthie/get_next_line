@@ -6,7 +6,7 @@
 /*   By: bbonnet <bbonnet@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:57:24 by bbonnet           #+#    #+#             */
-/*   Updated: 2023/11/07 21:32:46 by bbonnet          ###   ########.fr       */
+/*   Updated: 2023/11/07 23:20:29 by bbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int extract_line_from_buffer(char **line, char *buffer, int *line_len)
 	if (*line == NULL)
 		new_line[0] = 0;
 	ft_strlcat(new_line, buffer, *line_len + 1);
-	new_line[*line_len] = '\0';
+    new_line[*line_len] = '\0';
 	*line = new_line;
 	if (buffer[buffer_len - 1] == '\n')
 	{
-		memmove(buffer, buffer + buffer_len, BUFFER_SIZE - buffer_len + 1);
+		ft_memmove(buffer, buffer + buffer_len, BUFFER_SIZE - buffer_len + 1);
 		return (1);
 	}
 	buffer[0] = 0;
@@ -59,10 +59,7 @@ int add_to_buffer(int fd, char *buffer, char **line)
 	if (buffer[0] == 0)
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
 	if (read_bytes < 0)
-	{
-		free(line);
 		return (-1);
-	}
 	buffer[read_bytes] = 0;
 	if (read_bytes == 0)
 	{
@@ -105,7 +102,7 @@ char *get_next_line(int fd)
 			return (line);
 	}
 }
-//
+
 //#include <stdio.h>
 //
 //int main(int argc, char **argv)
@@ -115,7 +112,7 @@ char *get_next_line(int fd)
 //	(void) argc;
 //	fd = open(argv[1], O_RDONLY);
 //	printf("%d\n", fd);
-//	for (int i = 0; i < 4; i++)
+//	for (int i = 0; i < 2; i++)
 //	{
 //		line = get_next_line(fd);
 //		printf("%s", line);
