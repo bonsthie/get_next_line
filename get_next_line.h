@@ -7,7 +7,9 @@
 #include <string.h>
 #include <unistd.h>
 
-#define BUFFER_SIZES 42
+# ifndef BUFFER_SIZE 
+#  define BUFFER_SIZE 42
+# endif
 
 
 int ft_strlen(const char *str);

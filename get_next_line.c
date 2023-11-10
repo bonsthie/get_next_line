@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonnet <bbonnet@42angouleme.fr>           +#+  +:+       +#+        */
+/*   By: babonnet <babonnet@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:57:24 by bbonnet           #+#    #+#             */
-/*   Updated: 2023/11/07 23:20:29 by bbonnet          ###   ########.fr       */
+/*   Updated: 2023/11/10 18:49:49 by babonnet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int extract_line_from_buffer(char **line, char *buffer, int *line_len)
 	if (buffer_len == 0)
 		return (0);
 	*line_len += buffer_len;
-	new_line = realloc(*line, (*line_len + 1) * sizeof(char));
+	new_line = ft_realloc(*line, (*line_len + 1) * sizeof(char));
 	if (!new_line)
 		return (-1);
 	if (*line == NULL)
@@ -84,7 +84,7 @@ char *get_next_line(int fd)
 	int         line_len;
 	int         status;
 
-	if (fd == -1)
+	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (NULL);
 	line_len = 0;
 	line = NULL;
@@ -103,20 +103,3 @@ char *get_next_line(int fd)
 	}
 }
 
-//#include <stdio.h>
-//
-//int main(int argc, char **argv)
-//{
-//	int   fd;
-//	char *line;
-//	(void) argc;
-//	fd = open(argv[1], O_RDONLY);
-//	printf("%d\n", fd);
-//	for (int i = 0; i < 2; i++)
-//	{
-//		line = get_next_line(fd);
-//		printf("%s", line);
-//		free(line);
-//	}
-//	close(fd);
-//}
