@@ -12,9 +12,10 @@
 # endif
 
 
-int ft_strlen(const char *str);
+size_t ft_strlen(const char *str);
 size_t ft_strlcat(char *dest, const char *src, unsigned int size);
 void *ft_memmove(void *destination, const void *source, size_t num);
+char *ft_realloc_str(char *str, size_t new_size);
 char *get_next_line(int fd);
 
 #endif

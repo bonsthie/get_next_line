@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babonnet <babonnet@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: bbonnet <bbonnet@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:57:24 by bbonnet           #+#    #+#             */
-/*   Updated: 2023/11/10 18:49:49 by babonnet         ###   ########.fr       */
+/*   Updated: 2023/11/12 23:08:45 by bbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
-// realloc
 int strlen_char(const char *str, const char c)
 {
 	const char *start;
@@ -34,13 +34,13 @@ int extract_line_from_buffer(char **line, char *buffer, int *line_len)
 	if (buffer_len == 0)
 		return (0);
 	*line_len += buffer_len;
-	new_line = ft_realloc(*line, (*line_len + 1) * sizeof(char));
+	new_line = ft_realloc_str(*line, (*line_len + 1));
 	if (!new_line)
 		return (-1);
 	if (*line == NULL)
 		new_line[0] = 0;
 	ft_strlcat(new_line, buffer, *line_len + 1);
-    new_line[*line_len] = '\0';
+	new_line[*line_len] = '\0';
 	*line = new_line;
 	if (buffer[buffer_len - 1] == '\n')
 	{
