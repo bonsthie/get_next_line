@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbonnet <bbonnet@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 21:03:58 by bbonnet           #+#    #+#             */
-/*   Updated: 2023/11/19 19:23:19 by bbonnet          ###   ########.fr       */
+/*   Created: 2023/11/19 18:35:22 by bbonnet           #+#    #+#             */
+/*   Updated: 2023/11/19 18:40:31 by bbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t ft_strlen(const char *str)
 {

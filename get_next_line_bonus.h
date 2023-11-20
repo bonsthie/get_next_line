@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbonnet <bbonnet@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/19 18:36:11 by bbonnet           #+#    #+#             */
-/*   Updated: 2023/11/19 19:20:23 by bbonnet          ###   ########.fr       */
+/*   Created: 2023/11/19 18:35:52 by bbonnet           #+#    #+#             */
+/*   Updated: 2023/11/19 18:36:30 by bbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-#define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+#define GET_NEXT_LINE_BONUS_H
 
 #include <fcntl.h>
 #include <stddef.h>

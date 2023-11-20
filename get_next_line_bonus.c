@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbonnet <bbonnet@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 20:57:24 by bbonnet           #+#    #+#             */
-/*   Updated: 2023/11/19 19:20:22 by bbonnet          ###   ########.fr       */
+/*   Created: 2023/11/19 18:33:50 by bbonnet           #+#    #+#             */
+/*   Updated: 2023/11/19 19:17:24 by bbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int strlen_char(const char *str, const char c)
 {
@@ -98,19 +98,18 @@ char *return_line(char *buffer, int fd)
 
 char *get_next_line(int fd)
 {
-    static char *buffer;
+    static char *buffer[1024];
     char *line;
 
     if (fd < 0 || BUFFER_SIZE <= 0)
         return (NULL);
-    if (buffer == NULL)
+    if (buffer[fd] == NULL)
     {
-        buffer = (char *)malloc(BUFFER_SIZE + 1);
-        if (buffer == NULL)
+        buffer[fd] = (char *)malloc(BUFFER_SIZE + 1);
+        if (buffer[fd] == NULL)
             return (NULL);
-        buffer[0] = '\0';
+        buffer[fd][0] = '\0';
     }
-    line = return_line(buffer, fd);
+    line = return_line(buffer[fd], fd);
     return (line);
 }
-
