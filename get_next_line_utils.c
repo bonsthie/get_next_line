@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonnet <bbonnet@42angouleme.fr>           +#+  +:+       +#+        */
+/*   By: babonnet <babonnet@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 21:03:58 by bbonnet           #+#    #+#             */
-/*   Updated: 2023/11/19 19:23:19 by bbonnet          ###   ########.fr       */
+/*   Updated: 2023/11/28 14:10:21 by babonnet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t ft_strlen(const char *str)
+size_t	ft_strlen(const char *str)
 {
-	const char *start;
+	const char	*start;
 
 	start = str;
 	while (*start)
@@ -22,11 +22,11 @@ size_t ft_strlen(const char *str)
 	return (start - str);
 }
 
-size_t ft_strlcat(char *dest, const char *src, unsigned int size)
+size_t	ft_strlcat(char *dest, const char *src, unsigned int size)
 {
-	size_t dest_len;
-	size_t src_len;
-	size_t i;
+	size_t	dest_len;
+	size_t	src_len;
+	size_t	i;
 
 	if (!size)
 		return (ft_strlen(src));
@@ -44,13 +44,13 @@ size_t ft_strlcat(char *dest, const char *src, unsigned int size)
 	return (dest_len + src_len);
 }
 
-void *ft_memmove(void *destination, const void *source, size_t num)
+void	*ft_memmove(void *destination, const void *source, size_t num)
 {
-	unsigned char *src;
-	unsigned char *dest;
+	unsigned char	*src;
+	unsigned char	*dest;
 
-	src = (unsigned char *) source;
-	dest = (unsigned char *) destination;
+	src = (unsigned char *)source;
+	dest = (unsigned char *)destination;
 	if (src == dest)
 		return (destination);
 	if (src > dest)
@@ -82,21 +82,22 @@ char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-char *ft_realloc_str(char *str, size_t new_size)
+char	*ft_realloc_str(char *str, size_t new_size)
 {
+	void	*new_ptr;
+
 	if (new_size == 0)
 	{
 		free(str);
-		return NULL;
+		return (NULL);
 	}
-
 	if (!str)
-		return malloc(new_size * sizeof(char));
-	void *new_ptr = malloc(new_size);
+		return (malloc(new_size * sizeof(char)));
+	new_ptr = malloc(new_size);
 	if (new_ptr)
 	{
 		ft_strcpy(new_ptr, str);
 		free(str);
 	}
-	return new_ptr;
+	return (new_ptr);
 }

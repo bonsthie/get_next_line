@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbonnet <bbonnet@42angouleme.fr>           +#+  +:+       +#+        */
+/*   By: babonnet <babonnet@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 18:33:50 by bbonnet           #+#    #+#             */
-/*   Updated: 2023/11/19 19:17:24 by bbonnet          ###   ########.fr       */
+/*   Updated: 2023/11/28 14:09:41 by babonnet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-int strlen_char(const char *str, const char c)
+int	strlen_char(const char *str, const char c)
 {
-	const char *start;
+	const char	*start;
 
 	if (str == NULL)
 		return (0);
@@ -24,10 +24,10 @@ int strlen_char(const char *str, const char c)
 	return (start - str + (*start == c));
 }
 
-int extract_line_from_buffer(char **line, char *buffer, int *line_len)
+int	extract_line_from_buffer(char **line, char *buffer, int *line_len)
 {
-	int   buffer_len;
-	char *new_line;
+	int		buffer_len;
+	char	*new_line;
 
 	buffer_len = strlen_char(buffer, '\n');
 	if (buffer_len == 0)
@@ -43,16 +43,17 @@ int extract_line_from_buffer(char **line, char *buffer, int *line_len)
 	*line = new_line;
 	if (buffer[buffer_len - 1] == '\n')
 	{
-		ft_memmove(buffer, buffer + buffer_len, ft_strlen(buffer) - buffer_len + 1);
+		ft_memmove(buffer, buffer + buffer_len, ft_strlen(buffer) - buffer_len
+			+ 1);
 		return (1);
 	}
 	buffer[0] = 0;
 	return (2);
 }
 
-int add_to_buffer(int fd, char *buffer, char **line)
+int	add_to_buffer(int fd, char *buffer, char **line)
 {
-	int read_bytes;
+	int	read_bytes;
 
 	read_bytes = 0;
 	if (buffer[0] == 0)
@@ -69,47 +70,47 @@ int add_to_buffer(int fd, char *buffer, char **line)
 	return (0);
 }
 
-char *return_line(char *buffer, int fd)
+char	*return_line(char *buffer, int fd)
 {
-    char *line;
-    int     line_len;
-    int     status;
+	char	*line;
+	int		line_len;
+	int		status;
 
-    line = NULL;
-    line_len = 0;
-    while (1)
-    {
-        status = extract_line_from_buffer(&line, buffer, &line_len);
-        if (status == 1)
-            return (line);
-        else if (status == -1)
-        {
-        	free(line);
-            line = NULL;
-            return (NULL);
-        }
-        status = add_to_buffer(fd, buffer, &line);
-        if (status == -1)
-            return (NULL);
-        if (status == 1)
-            return (line);
-    }
+	line = NULL;
+	line_len = 0;
+	while (1)
+	{
+		status = extract_line_from_buffer(&line, buffer, &line_len);
+		if (status == 1)
+			return (line);
+		else if (status == -1)
+		{
+			free(line);
+			line = NULL;
+			return (NULL);
+		}
+		status = add_to_buffer(fd, buffer, &line);
+		if (status == -1)
+			return (NULL);
+		if (status == 1)
+			return (line);
+	}
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-    static char *buffer[1024];
-    char *line;
+	static char	*buffer[1024];
+	char		*line;
 
-    if (fd < 0 || BUFFER_SIZE <= 0)
-        return (NULL);
-    if (buffer[fd] == NULL)
-    {
-        buffer[fd] = (char *)malloc(BUFFER_SIZE + 1);
-        if (buffer[fd] == NULL)
-            return (NULL);
-        buffer[fd][0] = '\0';
-    }
-    line = return_line(buffer[fd], fd);
-    return (line);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	if (buffer[fd] == NULL)
+	{
+		buffer[fd] = (char *)malloc(BUFFER_SIZE + 1);
+		if (buffer[fd] == NULL)
+			return (NULL);
+		buffer[fd][0] = '\0';
+	}
+	line = return_line(buffer[fd], fd);
+	return (line);
 }
